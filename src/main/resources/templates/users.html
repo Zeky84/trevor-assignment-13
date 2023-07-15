@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link rel="stylesheet" href="./general.css" type="text/css">
+</head>
+<body>
+    <h1>Users</h1>
+    <div th:if="${#lists.size(users)==1}">
+        <form action="" method="post">
+            <div>
+                Username: <input type="text" th:field="${user.username}">
+            </div>
+            <div>
+                Password: <input type="password" th:field="${user.password}">
+            </div>
+            <div>
+                Full Name: <input type="text" th:field="${user.fullName}">
+            </div>
+            <hr/>
+            <div>
+                Address Line 1: <input type="text" th:field="${address.addressLine1}">
+            </div>
+            <div>
+                Address Line 2: <input type="text" th:field="${address.addressLine2}">
+            </div>
+            <div>
+                City: <input type="text" th:field="${address.city}">
+            </div>
+            <div>
+                Region: <input type="text" th:field="${address.region}">
+            </div>
+            <div>
+                Country: <input type="text" th:field="${address.country}">
+            </div>
+            <div>
+                Zip Code: <input type="text" th:field="${address.zipCode}">
+            </div>
+            <div>
+                <button type="submit" style="color:blue" >Update User Account</button>
+            </div>
+        </form>
+        <form th:action="@{/users/{user_id}/delete(user_id=${user.user_id})}" method="post">
+            <div>
+                <button type="submit" style="color:blue" >Delete User Account</button>
+            </div>
+        </form>
+        <hr/>
+        <div>
+            <h2>
+                Accounts
+            </h2>
+            <!--        <div th:if="${#lists.size(user.getAccounts)>1}" th:each="account: user.getAccounts">-->
+            <!--            <span th:text="${account.getAccountName}"></span>-->
+            <!--        </div>-->
+        </div>
+    </div>
+
+
+
+    <div th:if="${#lists.size(users)>1}" >
+        <h3>List of Users</h3>
+        <div th:each = "user:${users}">
+            <span><a style="color: blue" th:href="@{/users/{userId}(userId=${user.user_id})}">[[${user.user_id}]]</a></span>
+            <span th:text = "${user.username}"></span>
+            <span th:text = " ${user.password}"></span>
+            <span></span><br/>
+            <hr/>
+        </div>
+    </div>
+
+</body>
+</html>
