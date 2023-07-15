@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link rel="stylesheet" href="./general.css" type="text/css">
+</head>
+<body>
+    <h1>Users</h1>
+    <div th:if="${#lists.size(users)==1}">
+          <form th:action="@{/users/{user_id}(user_id=${user_id})}" th:object="${user}" method="post"><!--<form action="@{/users/{user_id}(user_id=${user.user_id})}" method="post">-->
+            <div>
+                 <input type="hidden" th:field="${user.user_id}">
+            </div>
+            <div>
+                Username: <input type="text" th:field="${user.username}">
+            </div>
+            <div>
+                Password: <input type="password" th:field="${user.password}">
+            </div>
+            <div>
+                Full Name: <input type="text" th:field="${user.fullName}">
+            </div>
+            <hr/>
+            <div>
+                Address Line 1: <input type="text" th:field="${user.address.addressLine1}">
+            </div>
+            <div>
+                Address Line 2: <input type="text" th:field="${user.address.addressLine2}">
+            </div>
+            <div>
+                City: <input type="text" th:field="${user.address.city}">
+            </div>
+            <div>
+                Region: <input type="text" th:field="${user.address.region}">
+            </div>
+            <div>
+                Country: <input type="text" th:field="${user.address.country}">
+            </div>
+            <div>
+                Zip Code: <input type="text" th:field="${user.address.zipCode}">  <!--th:field="${address.zipCode}"-->
+            </div>
+              <input type="hidden" th:field="${user.address.user_id}">
+              <input type="hidden" th:field="${user.address.user}">
+            <div>
+                <button type="submit" style="color:blue" >Update User Account</button>
+            </div>
+        </form>
+        <form th:action="@{/users/{user_id}/delete(user_id=${user.user_id})}" method="post">
+            <div>
+                <button type="submit" style="color:blue" >Delete User Account</button>
+            </div>
+        </form>
+        <hr/>
+<!--        <div>-->
+<!--            <h2>-->
+<!--                Accounts-->
+<!--            </h2>-->
+<!--                    <div th:if="${#lists.size(user.getAccounts)>=1}" th:each="account: ${user.getAccounts}">-->
+<!--                        <span th:text = "${account.account_id}"></span>&#45;&#45;&#45;&#45;-->
+<!--                        <span th:text="${account.accountName}"></span>-->
+
+<!--                    </div>-->
+<!--        </div>-->
+    </div>
+
+
+
+    <div th:if="${#lists.size(users)>1}" >
+<!--        <h3>List of Users</h3>-->
+        <div th:unless="${#lists.size(users)==1}" th:each = "user:${users}">
+            <span><a style="color: blue" th:href="@{/users/{userId}(userId=${user.user_id})}">[[${user.user_id}]]</a></span><br/>
+            <span th:text = "${user.username}"></span><br/>
+            <span th:text = "${user.fullName}"></span><br/>
+            <span th:text = " ${user.password}"></span>
+
+                <div th:each="account: ${user.accounts}">
+                    <span th:text="${account.accountName}"></span>
+                </div>
+            <hr/>
+        </div>
+
+    </div>
+
+</body>
+</html>
