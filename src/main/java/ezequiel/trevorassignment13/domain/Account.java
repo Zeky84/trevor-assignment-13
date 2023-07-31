@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "accounts")
+@Table(name = "account")
 public class Account {
     private Long account_id;
     private String accountName;
@@ -31,7 +31,7 @@ public class Account {
     public void setAccountName(String accountName) {
         this.accountName = accountName;
     }
-    @ManyToMany(mappedBy = "accounts")
+    @ManyToMany(mappedBy = "accounts", cascade = CascadeType.PERSIST)
     public List<User> getUsers() {
         return users;
     }
@@ -41,26 +41,5 @@ public class Account {
     }
 
 
-    @Override
-    public int hashCode(){
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((account_id == null) ? 0: account_id.hashCode());
-        return result;
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if( o == null || getClass() != o.getClass())
-            return false;
-        Account other = (Account) o;
-        if (account_id == null){
-        if (other.account_id != null)
-            return false;
-        }else if (!account_id.equals(other.account_id))
-            return false;
-        return true;
-    }
 }

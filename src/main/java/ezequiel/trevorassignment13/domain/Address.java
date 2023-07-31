@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 @Table(name = "address")
 public class Address {
     private Long user_id;
-
     private User user;
     private String addressLine1;
 
@@ -94,4 +93,17 @@ public class Address {
         this.zipCode = zipCode;
     }
 
+    @Override
+    public String toString() {
+        return "Address{" +
+                "user_id=" + user_id +
+                ", user=" + user +
+                ", addressLine1='" + addressLine1 + '\'' +
+                ", addressLine2='" + addressLine2 + '\'' +
+                ", city='" + city + '\'' +
+                ", region='" + region + '\'' +
+                ", country='" + country + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                '}';
+    }
 }
