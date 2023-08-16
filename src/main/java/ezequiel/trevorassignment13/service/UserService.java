@@ -52,12 +52,13 @@ public class UserService {
     }
 
     public void deleteById(Long user_id) {
-        User userEntity = userRepository.findById(user_id).orElse(null);
-        Address addressEntity = addressRepository.findById(user_id).orElse(null);
-        addressEntity.setUser(null);
-        userEntity.setAddress(null);
-        addressRepository.delete(addressEntity);
-        userRepository.delete(userEntity);
+//        User userEntity = userRepository.findById(user_id).orElse(null);
+//        Address addressEntity = addressRepository.findById(user_id).orElse(null);
+//        addressEntity.setUser(null);
+//        userEntity.setAddress(null);
+//        addressRepository.delete(addressEntity);
+//        userRepository.delete(userEntity);
+        userRepository.deleteById(user_id);
 
     }
 

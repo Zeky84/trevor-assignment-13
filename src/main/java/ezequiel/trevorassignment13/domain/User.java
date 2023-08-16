@@ -65,7 +65,7 @@ public class User {
         this.accounts = accounts;
     }
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
     public Address getAddress() {
         return address;
     }
