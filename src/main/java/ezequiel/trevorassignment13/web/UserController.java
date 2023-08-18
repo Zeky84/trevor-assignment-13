@@ -82,6 +82,7 @@ public class UserController {
         account.getUsers().add(user);
         user.getAccounts().add(account);
         accountService.saveAccount(account);
+//        userService.saveUser(user);
         return "redirect:/users/{user_id}/accounts/"+account.getAccount_id();
     }
     @GetMapping("/users/{user_id}/accounts/{account_id}")

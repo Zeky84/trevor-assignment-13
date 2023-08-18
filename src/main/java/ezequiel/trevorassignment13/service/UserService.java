@@ -28,7 +28,7 @@ public class UserService {
 //        if (user.getUser_id() == null) {
 //            Account account = new Account();
 //            account.setAccountName(user.getFullName()+"New Account");
-//            account.getUsers().add(user); //Change this to set instead...
+//            account.getUsers().add(user);
 //            accountRepository.save(account);
 //            user.getAccounts().add(account);
 //        }
