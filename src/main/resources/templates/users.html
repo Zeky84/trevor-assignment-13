@@ -16,7 +16,7 @@
             Username: <input type="text" th:field="${user.username}">
         </div>
         <div>
-            Password: <input type="text" th:field="${user.password}"> <!--Change this from type=password to type=text to avoid erasing the password when updating user-->
+            Password: <input type="text" th:field="${user.password}"  > <!--Change this from type=password to type=text to avoid erasing the password when updating user-->
         </div>
         <div>
             Full Name: <input type="text" th:field="${user.fullName}">
@@ -48,6 +48,7 @@
             <button type="submit" style="color:blue">Update User Account</button>
         </div>
     </form>
+
     <form th:action="@{/users/{user_id}/delete(user_id=${user.user_id})}" method="post">
         <div>
             <button type="submit" style="color:blue">Delete User Account</button>
@@ -77,11 +78,12 @@
 
 
 <div th:if="${#lists.size(users)>1}">
-    <div th:unless="${#lists.size(users)==1}" th:each="user:${users}">
+    <div th:each="user:${users}"><!-- <div th:unless="${#lists.size(users)==1}" th:each="user:${users}">-->
+
         <span><a style="color: blue" th:href="@{/users/{userId}(userId=${user.user_id})}">[[${user.user_id}]]</a></span><br/>
         <span th:text="${user.username}"></span><br/>
         <span th:text="${user.fullName}"></span><br/>
-        <span th:text=" ${user.password}"></span>
+        <span th:password=" ${user.password}"></span>
 
         <div th:each="account: ${user.accounts}">
             <a th:href="@{/users/{user_id}/accounts/{account_id}(user_id=${user.user_id},account_id=${account.account_id})}"><span>[[${account.accountName}]]</span></a>
