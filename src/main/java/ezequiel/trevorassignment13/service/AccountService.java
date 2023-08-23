@@ -10,11 +10,10 @@ import java.util.Optional;
 
 @Service
 public class AccountService {
-    User user;
+
     @Autowired
     private AccountRepository accountRepository;
     public void saveAccount(Account account) {
-
         accountRepository.save(account);
     }
 

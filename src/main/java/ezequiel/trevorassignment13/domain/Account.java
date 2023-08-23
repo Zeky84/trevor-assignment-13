@@ -40,6 +40,4 @@ public class Account {
         this.users = users;
     }
 
-
-
 }
